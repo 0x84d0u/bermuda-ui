@@ -1,0 +1,65 @@
+# --- General ---
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Dependencies
+# ----------------------------------------------------------------
+# Ignore node_modules folders in all subdirectories (workspaces)
+**/node_modules/
+
+# PNPM
+# ----------------------------------------------------------------
+pnpm-debug.log
+
+# Build Outputs
+# ----------------------------------------------------------------
+# Standard build output folders, like in your 'packages/core'
+**/dist/
+build/
+out/
+
+# Framework-specific build outputs
+.next/ # For your 'nextjs-demo'
+.output/ # Nuxt.js (common in monorepos)
+.vite-cache/ # Vite cache
+
+# Monorepo Tooling (from your screenshot)
+# ----------------------------------------------------------------
+# Turborepo cache. This is critical!
+.turbo/
+**/.turbo/
+
+# Local Environment Variables
+# ----------------------------------------------------------------
+# Never commit environment variables
+.env
+.env.local
+.env.*.local
+*.local
+
+# Logs
+# ----------------------------------------------------------------
+*.log
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+
+# Testing & Coverage
+# ----------------------------------------------------------------
+coverage/
+.nyc_output/
+
+# OS & Editor Files
+# ----------------------------------------------------------------
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
