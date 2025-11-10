@@ -1,4 +1,6 @@
-@import "@bermuda-ui/foundation/css";
+@import "@bermuda-ui/foundation/styles";
+@source "../../../packages/**/*.{ts,tsx,js,jsx}";
+
 /* 
 :root {
   --background: #ffffff;

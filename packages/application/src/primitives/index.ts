@@ -1,1 +1,2 @@
-export * as AppHeaderPrimitive from './app-header'
+
+export * as ShellPrimitive from './shell'

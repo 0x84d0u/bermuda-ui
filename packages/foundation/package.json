@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "exports": {
-    "./css": "./src/design-system/css/index.css",
+    "./styles": "./src/styles/index.css",
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
