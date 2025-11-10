@@ -1,7 +1,4 @@
 packages:
-  # All packages in the packages folder
   - 'packages/*'
-  # All apps in the apps folder
   - 'apps/*'
-  # All tooling packages
   - 'tooling/*'

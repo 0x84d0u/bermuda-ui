@@ -1,0 +1,152 @@
+:root {
+  /* Base background/foreground */
+  --color-background: var(--color-palette-white);
+  --color-foreground: var(--color-palette-gray-900);
+
+  /* Muted text and surfaces */
+  --color-muted: var(--color-palette-gray-100);
+  --color-muted-foreground: var(--color-palette-gray-600);
+  --color-muted-hover: var(--color-palette-gray-200);
+  --color-muted-ring: var(--color-palette-gray-300);
+  --color-muted-ring-hover: var(--color-palette-gray-400);
+
+  /* Borders & inputs */
+  --color-border: var(--color-palette-gray-200);
+  --color-input: var(--color-palette-gray-200);
+  --color-ring: var(--color-palette-blue-500);
+  --color-ring-hover: var(--color-palette-blue-600);
+
+  /* Core UI colors */
+  --color-primary: var(--color-palette-blue-600);
+  --color-primary-hover: var(--color-palette-blue-700);
+  --color-primary-foreground: var(--color-palette-white);
+  --color-primary-ring: var(--color-palette-blue-500);
+  --color-primary-ring-hover: var(--color-palette-blue-600);
+
+  --color-secondary: var(--color-palette-gray-200);
+  --color-secondary-hover: var(--color-palette-gray-300);
+  --color-secondary-foreground: var(--color-palette-gray-900);
+  --color-secondary-ring: var(--color-palette-gray-300);
+  --color-secondary-ring-hover: var(--color-palette-gray-400);
+
+  --color-accent: var(--color-palette-blue-100);
+  --color-accent-hover: var(--color-palette-blue-200);
+  --color-accent-foreground: var(--color-palette-blue-900);
+  --color-accent-ring: var(--color-palette-blue-200);
+  --color-accent-ring-hover: var(--color-palette-blue-300);
+
+  --color-destructive: var(--color-palette-red-600);
+  --color-destructive-hover: var(--color-palette-red-700);
+  --color-destructive-foreground: var(--color-palette-white);
+  --color-destructive-ring: var(--color-palette-red-500);
+  --color-destructive-ring-hover: var(--color-palette-red-600);
+
+  --color-success: var(--color-palette-green-600);
+  --color-success-hover: var(--color-palette-green-700);
+  --color-success-foreground: var(--color-palette-white);
+  --color-success-ring: var(--color-palette-green-500);
+  --color-success-ring-hover: var(--color-palette-green-600);
+
+  --color-warning: var(--color-palette-amber-600);
+  --color-warning-hover: var(--color-palette-amber-700);
+  --color-warning-foreground: var(--color-palette-gray-900);
+  --color-warning-ring: var(--color-palette-amber-500);
+  --color-warning-ring-hover: var(--color-palette-amber-600);
+
+  --color-info: var(--color-palette-blue-600);
+  --color-info-hover: var(--color-palette-blue-700);
+  --color-info-foreground: var(--color-palette-white);
+  --color-info-ring: var(--color-palette-blue-500);
+  --color-info-ring-hover: var(--color-palette-blue-600);
+
+  /* Surfaces */
+  --color-card: var(--color-palette-white);
+  --color-card-hover: var(--color-palette-gray-50);
+  --color-card-foreground: var(--color-palette-gray-900);
+  --color-card-ring: var(--color-palette-blue-200);
+  --color-card-ring-hover: var(--color-palette-blue-300);
+
+  --color-popover: var(--color-palette-white);
+  --color-popover-hover: var(--color-palette-gray-50);
+  --color-popover-foreground: var(--color-palette-gray-900);
+  --color-popover-ring: var(--color-palette-blue-200);
+  --color-popover-ring-hover: var(--color-palette-blue-300);
+
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-backdrop: rgba(0, 0, 0, 0.3);
+  --color-surface: var(--color-palette-white);
+}
+
+.dark {
+  --color-background: var(--color-palette-gray-950);
+  --color-foreground: var(--color-palette-gray-50);
+
+  --color-muted: var(--color-palette-gray-900);
+  --color-muted-foreground: var(--color-palette-gray-400);
+  --color-muted-hover: var(--color-palette-gray-800);
+  --color-muted-ring: var(--color-palette-gray-700);
+  --color-muted-ring-hover: var(--color-palette-gray-600);
+
+  --color-border: var(--color-palette-gray-800);
+  --color-input: var(--color-palette-gray-800);
+  --color-ring: var(--color-palette-blue-400);
+  --color-ring-hover: var(--color-palette-blue-500);
+
+  --color-primary: var(--color-palette-blue-500);
+  --color-primary-hover: var(--color-palette-blue-600);
+  --color-primary-foreground: var(--color-palette-gray-50);
+  --color-primary-ring: var(--color-palette-blue-400);
+  --color-primary-ring-hover: var(--color-palette-blue-500);
+
+  --color-secondary: var(--color-palette-gray-800);
+  --color-secondary-hover: var(--color-palette-gray-700);
+  --color-secondary-foreground: var(--color-palette-gray-100);
+  --color-secondary-ring: var(--color-palette-gray-700);
+  --color-secondary-ring-hover: var(--color-palette-gray-600);
+
+  --color-accent: var(--color-palette-blue-900);
+  --color-accent-hover: var(--color-palette-blue-800);
+  --color-accent-foreground: var(--color-palette-blue-100);
+  --color-accent-ring: var(--color-palette-blue-800);
+  --color-accent-ring-hover: var(--color-palette-blue-700);
+
+  --color-destructive: var(--color-palette-red-500);
+  --color-destructive-hover: var(--color-palette-red-600);
+  --color-destructive-foreground: var(--color-palette-gray-50);
+  --color-destructive-ring: var(--color-palette-red-500);
+  --color-destructive-ring-hover: var(--color-palette-red-600);
+
+  --color-success: var(--color-palette-green-500);
+  --color-success-hover: var(--color-palette-green-600);
+  --color-success-foreground: var(--color-palette-gray-50);
+  --color-success-ring: var(--color-palette-green-500);
+  --color-success-ring-hover: var(--color-palette-green-600);
+
+  --color-warning: var(--color-palette-amber-500);
+  --color-warning-hover: var(--color-palette-amber-600);
+  --color-warning-foreground: var(--color-palette-gray-900);
+  --color-warning-ring: var(--color-palette-amber-500);
+  --color-warning-ring-hover: var(--color-palette-amber-600);
+
+  --color-info: var(--color-palette-blue-500);
+  --color-info-hover: var(--color-palette-blue-600);
+  --color-info-foreground: var(--color-palette-gray-50);
+  --color-info-ring: var(--color-palette-blue-500);
+  --color-info-ring-hover: var(--color-palette-blue-600);
+
+  --color-card: var(--color-palette-gray-900);
+  --color-card-hover: var(--color-palette-gray-800);
+  --color-card-foreground: var(--color-palette-gray-50);
+  --color-card-ring: var(--color-palette-blue-700);
+  --color-card-ring-hover: var(--color-palette-blue-600);
+
+  --color-popover: var(--color-palette-gray-900);
+  --color-popover-hover: var(--color-palette-gray-800);
+  --color-popover-foreground: var(--color-palette-gray-50);
+  --color-popover-ring: var(--color-palette-blue-700);
+  --color-popover-ring-hover: var(--color-palette-blue-600);
+
+  --color-overlay: rgba(0, 0, 0, 0.7);
+  --color-backdrop: rgba(0, 0, 0, 0.5);
+  --color-surface: var(--color-palette-gray-900);
+}
