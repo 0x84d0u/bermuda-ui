@@ -1,15 +1,10 @@
 import * as React from "react"
-import { cn, Slot } from "@utils"
+import { cn, setDisplayName, Slot } from "@utils"
 
-/* ------------------ TYPES ------------------ */
-
-type TextSize = "sm" | "md" | "lg" | "xl"
-type TextWeight = "light" | "normal" | "medium" | "bold"
-type TextColor = "foreground" | "muted" | "primary" | "secondary"
-
-
-
-/* ------------------ VARIANTS ------------------ */
+export type TextSize = "sm" | "md" | "lg" | "xl"
+export type TextWeight = "light" | "normal" | "medium" | "bold"
+export type TextColor = "foreground" | "muted" | "primary" | "secondary"
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 const sizeClasses: Record<TextSize, string> = {
     sm: "text-sm",
@@ -32,15 +27,20 @@ const colorClasses: Record<TextColor, string> = {
     secondary: "text-secondary",
 }
 
-/* ------------------ TEXT ------------------ */
-type TextProps = React.HTMLAttributes<HTMLElement> & {
+
+export type TextProps = React.HTMLAttributes<HTMLElement> & {
     asChild?: boolean
     size?: TextSize
     weight?: TextWeight
     color?: TextColor
 }
 
-const Text = ({
+export type HeadingProps = TextProps & { level?: HeadingLevel }
+export type BlockquoteProps = TextProps
+export type CodeProps = TextProps
+
+
+export const Text = ({
     asChild = false,
     size = "md",
     weight = "normal",
@@ -60,11 +60,7 @@ const Text = ({
     )
 }
 
-/* ------------------ HEADING ------------------ */
-
-type HeadingProps = TextProps & { level?: 1 | 2 | 3 | 4 | 5 | 6 }
-
-const Heading = ({ level = 1, className, children, ...props }: HeadingProps) => {
+export const Heading = ({ level = 1, className, children, ...props }: HeadingProps) => {
     const Tag = `h${level}` as React.ElementType
     return (
         <Tag className={cn("font-bold", className)} {...props}>
@@ -73,43 +69,19 @@ const Heading = ({ level = 1, className, children, ...props }: HeadingProps) => 
     )
 }
 
-/* ------------------ BLOCKQUOTE ------------------ */
-
-type BlockquoteProps = TextProps
-
-
-const Blockquote = ({ className, children, ...props }: BlockquoteProps) => (
+export const Blockquote = ({ className, children, ...props }: BlockquoteProps) => (
     <blockquote className={cn("border-l-4 pl-4 italic text-muted-foreground", className)} {...props}>
         {children}
     </blockquote>
 )
 
-/* ------------------ INLINE CODE ------------------ */
-
-type CodeProps = TextProps
-
-const Code = ({ className, children, ...props }: CodeProps) => (
+export const Code = ({ className, children, ...props }: CodeProps) => (
     <code className={cn("bg-muted px-1 rounded font-mono text-sm", className)} {...props}>
         {children}
     </code>
 )
 
-/* ------------------ EXPORTS ------------------ */
-
-
-export const TextPrimitive = Object.assign(Text, {
-    Base: Text,
-    Heading,
-    Blockquote,
-    Code,
-})
-
-export type {
-    TextColor,
-    TextSize,
-    TextWeight,
-    TextProps,
-    HeadingProps,
-    BlockquoteProps,
-    CodeProps
-}
+setDisplayName(Text, "TextPrimitive.Text")
+setDisplayName(Heading, "TextPrimitive.Heading")
+setDisplayName(Blockquote, "TextPrimitive.Blockquote")
+setDisplayName(Code, "TextPrimitive.Code")

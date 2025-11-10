@@ -1,3 +1,3 @@
-import { TextPrimitive , type HeadingProps } from "@primitives";
+import { TextPrimitive } from "@primitives";
 
-export const Heading = (props: HeadingProps) => <TextPrimitive.Heading {...props}/>
+export const Heading = (props: TextPrimitive.HeadingProps) => <TextPrimitive.Heading {...props}/>

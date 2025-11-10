@@ -1,8 +1,8 @@
 import * as React from "react"
-import { ButtonPrimitive, type ButtonRootProps } from "@primitives"
+import { ButtonPrimitive } from "@primitives"
 
 
-export type ButtonProps = ButtonRootProps & {
+export type ButtonProps = ButtonPrimitive.RootProps & {
     leftIcon?: React.ReactNode
     rightIcon?: React.ReactNode
 }

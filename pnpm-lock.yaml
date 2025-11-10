@@ -36,6 +36,9 @@ importers:
 
   apps/playground:
     dependencies:
+      '@bermuda-ui/application':
+        specifier: workspace:*
+        version: link:../../packages/application
       '@bermuda-ui/foundation':
         specifier: workspace:*
         version: link:../../packages/foundation
@@ -76,6 +79,22 @@ importers:
       typescript:
         specifier: ^5
         version: 5.9.3
+
+  packages/application:
+    dependencies:
+      '@bermuda-ui/foundation':
+        specifier: workspace:*
+        version: link:../foundation
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@bermuda-ui/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript-config
 
   packages/foundation:
     dependencies:

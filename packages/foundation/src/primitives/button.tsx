@@ -1,34 +1,33 @@
 import React from "react"
-import { cn, Slot } from "@utils"
+import { cn, setDisplayName, Slot } from "@utils"
 
-/* ------------------ VARIANTS ------------------ */
 
-type ButtonSize = "small" | "medium" | "large"
-type ButtonColor = "primary" | "secondary" | "destructive" | "outline"
+export type Size = "small" | "medium" | "large"
 
-const sizeClasses: Record<ButtonSize, string> = {
-  small: "px-3 py-1.5 text-sm",
-  medium: "px-4 py-2 text-base",
-  large: "px-5 py-3 text-lg",
+const sizeClasses: Record<Size, string> = {
+    small: "px-3 py-1.5 text-sm",
+    medium: "px-4 py-2 text-base",
+    large: "px-5 py-3 text-lg",
 }
 
-const colorClasses: Record<ButtonColor, string> = {
+export type Color = "primary" | "secondary" | "destructive" | "outline"
+
+const colorClasses: Record<Color, string> = {
   primary: "bg-primary text-primary-foreground hover:bg-primary-hover focus:ring-primary-ring",
   secondary: "bg-secondary text-secondary-foreground hover:bg-secondary-hover focus:ring-secondary-ring",
   destructive: "bg-destructive text-destructive-foreground hover:bg-destructive-hover focus:ring-destructive-ring",
   outline: "border border-border text-foreground hover:bg-muted focus:ring-primary-ring",
 }
 
-/* ------------------ ROOT ------------------ */
 
-type ButtonRootProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+export type RootProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   asChild?: boolean
-  size?: ButtonSize
-  color?: ButtonColor
+  size?: Size
+  color?: Color
   isLoading?: boolean
 }
 
-const ButtonRoot = ({
+export const Root = ({
   asChild = false,
   size = "medium",
   color = "primary",
@@ -37,7 +36,7 @@ const ButtonRoot = ({
   disabled,
   children,
   ...props
-}: ButtonRootProps) => {
+}: RootProps) => {
   const Comp = asChild ? Slot : "button"
   return <Comp
     disabled={isLoading || disabled}
@@ -54,35 +53,30 @@ const ButtonRoot = ({
   </Comp>
 }
 
-ButtonRoot.displayName = "ButtonRoot"
 
-/* ------------------ CONTENT ------------------ */
 
-type ButtonContentProps = {
+export type ContentProps = {
   children: React.ReactNode
   isLoading?: boolean
 }
 
-const ButtonContent = ({ children, isLoading }: ButtonContentProps) => (
+export const Content = ({ children, isLoading }: ContentProps) => (
   <span className={cn("inline-flex items-center gap-2", isLoading && "opacity-50")}>
     {children}
   </span>
 )
-ButtonContent.displayName = "ButtonContent"
 
-/* ------------------ ICON ------------------ */
-
-type ButtonIconProps = {
+export type IconProps = {
   children: React.ReactNode
   position?: "left" | "right"
   isLoading?: boolean
 }
 
-const ButtonIcon = ({
+export const Icon = ({
   children,
   position = "left",
   isLoading,
-}: ButtonIconProps) => (
+}: IconProps) => (
   <span
     className={cn(
       "inline-flex items-center",
@@ -94,15 +88,13 @@ const ButtonIcon = ({
     {children}
   </span>
 )
-ButtonIcon.displayName = "ButtonIcon"
 
-/* ------------------ SPINNER ------------------ */
 
-type ButtonSpinnerProps = {
+export type SpinnerProps = {
   isLoading?: boolean
 }
 
-const ButtonSpinner = ({ isLoading }: ButtonSpinnerProps) => {
+export const Spinner = ({ isLoading }: SpinnerProps) => {
   if (!isLoading) return null
   return (
     <span className="absolute inline-flex items-center justify-center">
@@ -129,23 +121,9 @@ const ButtonSpinner = ({ isLoading }: ButtonSpinnerProps) => {
     </span>
   )
 }
-ButtonSpinner.displayName = "ButtonSpinner"
 
-/* ------------------ COMPOUND EXPORT ------------------ */
 
-export const ButtonPrimitive = Object.assign(ButtonRoot, {
-  Root: ButtonRoot,
-  Content: ButtonContent,
-  Icon: ButtonIcon,
-  Spinner: ButtonSpinner,
-})
-
-export type {
-  ButtonSize,
-  ButtonColor,
-  ButtonRootProps,
-  ButtonContentProps,
-  ButtonIconProps,
-  ButtonSpinnerProps,
-}
-
+setDisplayName(Root, 'ButtonPrimitive.Root');
+setDisplayName(Icon, 'ButtonPrimitive.Icon');
+setDisplayName(Content, 'ButtonPrimitive.Content');
+setDisplayName(Spinner, 'ButtonPrimitive.Spinner');

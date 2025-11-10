@@ -1,9 +1,12 @@
+
+import { AppHeader } from "@bermuda-ui/application";
 import { Button } from "@bermuda-ui/foundation";
 
 
 export default function Home() {
     return <main className="h-svh flex flex-col gap-12 items-center justify-center">
         
+        <AppHeader />
         <section>
             <h2> Button </h2>
             <div className="flex gap-6`">

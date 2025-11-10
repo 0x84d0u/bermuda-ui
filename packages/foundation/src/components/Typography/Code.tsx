@@ -1,3 +1,3 @@
-import { TextPrimitive , type CodeProps } from "@primitives";
+import { TextPrimitive } from "@primitives";
 
-export const Code = (props: CodeProps) => <TextPrimitive.Code {...props}/>
+export const Code = (props: TextPrimitive.CodeProps) => <TextPrimitive.Code {...props}/>
