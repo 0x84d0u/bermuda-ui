@@ -9,4 +9,8 @@ export default defineConfig({
   external: ['react', 'react-dom'],
   treeshake: true,
   splitting: true,
+  
+  esbuildOptions(options) {
+    options.minify = false;  // ← This line matters
+  },
 });

@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from 'react';
 
 /**
@@ -45,7 +47,7 @@ export function createContext<T>(options: {
       throw new Error(errorMessage);
     }
 
-    return context;
+    return context as T;
   }
 
   return [Context.Provider, useContext, Context] as const;

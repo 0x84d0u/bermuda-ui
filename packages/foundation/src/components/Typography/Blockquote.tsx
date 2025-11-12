@@ -1,3 +1,3 @@
-import { TextPrimitive } from "@primitives";
+import { TextUI } from "../../ui";
 
-export const Blockquote = (props: TextPrimitive.BlockquoteProps) => <TextPrimitive.Blockquote {...props}/>
+export const Blockquote = (props: TextUI.BlockquoteProps) => <TextUI.Blockquote {...props}/>

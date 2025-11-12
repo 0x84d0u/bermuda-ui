@@ -6,7 +6,7 @@ import { ShellProvider, useShell } from "./ShellProvider"
 const Hooked = (props: ShellProps) => {
     const {
         sidebarIsOpen,
-        toggleSidebar
+        toggleSidebar,
     } = useShell()
     return <Shell
         isSidebarOpen={sidebarIsOpen}

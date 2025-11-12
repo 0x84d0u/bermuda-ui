@@ -1,3 +1,3 @@
-import { TextPrimitive } from "@primitives";
+import { TextUI } from "../../ui";
 
-export const Heading = (props: TextPrimitive.HeadingProps) => <TextPrimitive.Heading {...props}/>
+export const Heading = (props: TextUI.HeadingProps) => <TextUI.Heading {...props}/>

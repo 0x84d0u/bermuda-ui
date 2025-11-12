@@ -1,5 +1,5 @@
 import React from "react"
-import { ShellPrimitive } from "@primitives"
+import { ShellUI } from "@ui"
 
 
 // ----------------------- Shell ----------------------- //
@@ -9,43 +9,53 @@ export type ShellProps = {
     headerEnabled?: boolean
     headerIsBordered?: boolean
     headerIsFixed?: boolean
-
-    containerSize?: ShellPrimitive.ContainerProps['size']
-    containerSpacing?: ShellPrimitive.ContainerProps['spacing']
-
-    sidebarEnabled?: boolean
-    isSidebarOpen?: boolean
-    toggleSidebar?: () => void
-
     headerActionsContent?: React.ReactNode
     headerBrandingContent?: React.ReactNode
     headerToolbarContent?: React.ReactNode
-    footerContent?: React.ReactNode
+
+    containerSize?: ShellUI.ContainerProps['size']
+    containerSpacing?: ShellUI.ContainerProps['spacing']
+
+    sidebarEnabled?: boolean
+    sidebarPosition?: 'left' | 'right'
+    isSidebarOpen?: boolean
+    toggleSidebar?: () => void
+    sidebarHeaderContent?: React.ReactNode
+    sidebarContent?: React.ReactNode
+    sidebarFooterContent?: React.ReactNode
+
+
     children?: React.ReactNode
+
+    footerContent?: React.ReactNode
 }
 
 export const Shell = ({
     headerEnabled = true,
     headerIsBordered = true,
     headerIsFixed = true,
+    headerActionsContent,
+    headerBrandingContent,
+    headerToolbarContent,
 
     sidebarEnabled = true,
+    sidebarPosition = 'left',
     isSidebarOpen = false,
     toggleSidebar,
+    sidebarHeaderContent,
+    sidebarContent,
+    sidebarFooterContent,
 
     containerSize = 'laptop',
     containerSpacing = 'comfortable',
 
-    headerActionsContent,
-    headerBrandingContent,
-    headerToolbarContent,
     footerContent,
     children
 
 }: ShellProps) => {
 
 
-    return <ShellPrimitive.Root>
+    return <ShellUI.Root>
         {/* Header */}
         {headerEnabled && <Header
             isBordered={headerIsBordered}
@@ -63,33 +73,35 @@ export const Shell = ({
             actionsContent={headerActionsContent}
         />}
 
-        <ShellPrimitive.Body>
-            {/* Sidebar */}
+        <ShellUI.Body>
 
-            <div> Sidebar here</div>
+            {sidebarEnabled && <Sidebar 
+                isOpen={isSidebarOpen}
+                position={sidebarPosition}
+                headerContent={sidebarHeaderContent}
+                footerContent={sidebarFooterContent}
+                children={sidebarContent}
+            />}
 
-            <ShellPrimitive.Main>
-                {/* Main Content */}
+            <ShellUI.Main>
                 {children}
-                {/* Footer */}
-
                 {footerContent && <Footer
                     containerSize={containerSize}
                     containerSpacing={containerSpacing}
                     children={footerContent}
                 />}
-            </ShellPrimitive.Main>
+            </ShellUI.Main>
 
-        </ShellPrimitive.Body>
-    </ShellPrimitive.Root>
+        </ShellUI.Body>
+    </ShellUI.Root>
 }
 
 
 // ----------------------- Header ----------------------- //
 
-type HeaderProps = Pick<ShellPrimitive.Header.RootProps, 'isBordered' | 'isFixed'> & {
-    containerSize?: ShellPrimitive.ContainerProps['size']
-    containerSpacing?: ShellPrimitive.ContainerProps['spacing']
+type HeaderProps = Pick<ShellUI.HeaderRootProps, 'isBordered' | 'isFixed'> & {
+    containerSize?: ShellUI.ContainerProps['size']
+    containerSpacing?: ShellUI.ContainerProps['spacing']
     toolbarContent?: React.ReactNode
     brandingContent?: React.ReactNode
     actionsContent?: React.ReactNode
@@ -104,34 +116,33 @@ const Header = ({
     brandingContent,
     actionsContent
 }: HeaderProps) => {
-    const Base = ShellPrimitive.Header
-    return <ShellPrimitive.Header.Root
+    return <ShellUI.HeaderRoot
         isBordered={isBordered}
         isFixed={isFixed}
     >
-        <ShellPrimitive.Container
+        <ShellUI.Container
             className='h-16 min-h-16 grid grid-cols-3 items-center gap-4'
             size={containerSize}
             spacing={containerSpacing}
         >
-            <ShellPrimitive.Header.Toolbar>
+            <ShellUI.HeaderToolbar>
                 {toolbarContent}
-            </ShellPrimitive.Header.Toolbar>
-            <ShellPrimitive.Header.Branding>
+            </ShellUI.HeaderToolbar>
+            <ShellUI.HeaderBranding>
                 {brandingContent}
-            </ShellPrimitive.Header.Branding>
-            <ShellPrimitive.Header.Actions>
+            </ShellUI.HeaderBranding>
+            <ShellUI.HeaderActions>
                 {actionsContent}
-            </ShellPrimitive.Header.Actions>
-        </ShellPrimitive.Container>
-    </ShellPrimitive.Header.Root>
+            </ShellUI.HeaderActions>
+        </ShellUI.Container>
+    </ShellUI.HeaderRoot>
 }
 
 // ----------------------- Footer ----------------------- //
 
 type FooterProps = {
-    containerSize?: ShellPrimitive.ContainerProps['size']
-    containerSpacing?: ShellPrimitive.ContainerProps['spacing']
+    containerSize?: ShellUI.ContainerProps['size']
+    containerSpacing?: ShellUI.ContainerProps['spacing']
 
     children?: React.ReactNode
 }
@@ -141,19 +152,43 @@ const Footer = ({
     containerSpacing,
     children,
 }: FooterProps) => {
-    return <ShellPrimitive.Footer.Root>
-        <ShellPrimitive.Container
+    return <ShellUI.FooterRoot>
+        <ShellUI.Container
             size={containerSize}
             spacing={containerSpacing}
             className='h-16 min-h-16'
         >
             {children}
-        </ShellPrimitive.Container>
-    </ShellPrimitive.Footer.Root>
+        </ShellUI.Container>
+    </ShellUI.FooterRoot>
 }
 
-// ----------------------- Sidbar ----------------------- //
+// ----------------------- Sidebar ----------------------- //
 
+type SidebarProps = {
+    isOpen?: boolean
+    position?: 'left' | 'right'
+    headerContent?: React.ReactNode
+    footerContent?: React.ReactNode
+    children?: React.ReactNode
+}
+
+const Sidebar = ({
+    isOpen,
+    position,
+    headerContent,
+    footerContent,
+    children,
+}: SidebarProps) => {
+    return <ShellUI.SidebarRoot
+        isOpen={isOpen}
+        position={position}
+    >
+        {headerContent && <ShellUI.SidebarHeader>{headerContent}</ShellUI.SidebarHeader>}
+        <ShellUI.SidebarBody>{children}</ShellUI.SidebarBody>
+        {footerContent && <ShellUI.SidebarFooter>{footerContent}</ShellUI.SidebarFooter>}
+    </ShellUI.SidebarRoot>
+}
 
 
 // ----------------------- SidebarToggle ----------------------- //
@@ -161,7 +196,7 @@ const Footer = ({
 type SidebarToggleProps = { isOpen?: boolean; toggle?: () => void }
 
 const SidebarToggle = ({ isOpen, toggle }: SidebarToggleProps) => {
-    return <ShellPrimitive.Header.IconButton
+    return <ShellUI.HeaderButton
         className="laptop:hidden"
         isActive={isOpen}
         onClick={toggle}
@@ -180,5 +215,6 @@ const SidebarToggle = ({ isOpen, toggle }: SidebarToggleProps) => {
                 d="M4 6h16M4 12h16M4 18h16"
             />
         </svg>
-    </ShellPrimitive.Header.IconButton>
+    </ShellUI.HeaderButton>
 }
+

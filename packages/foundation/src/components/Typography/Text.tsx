@@ -1,3 +1,3 @@
-import { TextPrimitive } from "@primitives";
+import { TextUI } from "../../ui";
 
-export const Text = (props: TextPrimitive.TextProps) => <TextPrimitive.Text {...props} />
+export const Text = (props: TextUI.TextProps) => <TextUI.Text {...props} />

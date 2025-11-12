@@ -6,7 +6,7 @@
     "paths": {
       "@hooks": ["./src/hooks/index"],
       "@utils": ["./src/utils/index"],
-      "@primitives": ["./src/primitives/index"],
+      "@ui": ["./src/ui/index"],
       "@components": ["./src/components/index"]
     }
   },

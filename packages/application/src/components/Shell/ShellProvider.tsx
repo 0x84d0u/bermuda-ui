@@ -1,5 +1,6 @@
 "use client";
 
+import { createContext } from "@bermuda-ui/foundation";
 import React from "react";
 
 type ShellState = {
@@ -11,8 +12,17 @@ type ShellState = {
     headerIsScrolled?: boolean
 }
 
+const [ContextProvider, useShell] = createContext<Required<ShellState>>({
+    name: "Shell",
+    defaultValue: undefined,
+    strict: true,
+})
 
-const ShellContext = React.createContext<Required<ShellState> | undefined>(undefined)
+
+export {
+    useShell
+}
+
 
 export const ShellProvider = ({ children }: { children?: React.ReactNode }) => {
     const [headerIsScrolled, setHeaderScrolled] = React.useState<boolean>(false)
@@ -63,39 +73,39 @@ export const ShellProvider = ({ children }: { children?: React.ReactNode }) => {
         toggleSidebar,
     }), [headerIsScrolled, sidebarIsOpen, closeSidebar, openSidebar, toggleSidebar]);
 
-    return <ShellContext.Provider value={state}>
+    return <ContextProvider value={state}>
         {children}
-    </ShellContext.Provider>
+    </ContextProvider>
 }
 
 
-export const useShell = () => {
-    const ctx = React.useContext(ShellContext);
-    if (!ctx) {
-        throw new Error("useShell must be wrapped by its provider")
-    }
-    return ctx
-}
+// export const useShell = () => {
+//     const ctx = React.useContext(ShellContext);
+//     if (!ctx) {
+//         throw new Error("useShell must be wrapped by its provider")
+//     }
+//     return ctx
+// }
 
-export const useShellSidebar = () => {
-    const ctx = React.useContext(ShellContext);
-    if (!ctx) {
-        throw new Error("useShellSidebar must be wrapped by its provider")
-    }
-    return {
-        isOpen: ctx.sidebarIsOpen,
-        close: ctx.closeSidebar,
-        open: ctx.openSidebar,
-        toggle: ctx.toggleSidebar
-    }
-}
+// export const useShellSidebar = () => {
+//     const ctx = React.useContext(ShellContext);
+//     if (!ctx) {
+//         throw new Error("useShellSidebar must be wrapped by its provider")
+//     }
+//     return {
+//         isOpen: ctx.sidebarIsOpen,
+//         close: ctx.closeSidebar,
+//         open: ctx.openSidebar,
+//         toggle: ctx.toggleSidebar
+//     }
+// }
 
-export const useShellHeader = () => {
-    const ctx = React.useContext(ShellContext);
-    if (!ctx) {
-        throw new Error("useShellHeader must be wrapped by its provider")
-    }
-    return {
-        isScrolled: ctx.headerIsScrolled,
-    }
-}
+// export const useShellHeader = () => {
+//     const ctx = React.useContext(ShellContext);
+//     if (!ctx) {
+//         throw new Error("useShellHeader must be wrapped by its provider")
+//     }
+//     return {
+//         isScrolled: ctx.headerIsScrolled,
+//     }
+// }

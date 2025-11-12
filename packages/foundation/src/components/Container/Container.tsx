@@ -19,19 +19,19 @@ const spacingClasses: Record<Spacing, string> = {
     large: "px-8 py-6",
 }
 
-export type RootProps = {
+export type ContainerProps = {
     children?: React.ReactNode
     className?: string
     size?: Size
     spacing?: Spacing
 }
 
-export const Root = ({
+export const Container = ({
     children,
     className,
     size = 'fluid',
     spacing = 'comfortable',
-}: RootProps) => {
+}: ContainerProps) => {
     return <div
         className={cn(
             "w-full mx-auto",
@@ -44,4 +44,4 @@ export const Root = ({
     </div>
 }
 
-setDisplayName(Root, "ContainerPrimitive.Root")
+setDisplayName(Container, "Container")

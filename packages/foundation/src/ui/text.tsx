@@ -81,7 +81,7 @@ export const Code = ({ className, children, ...props }: CodeProps) => (
     </code>
 )
 
-setDisplayName(Text, "TextPrimitive.Text")
-setDisplayName(Heading, "TextPrimitive.Heading")
-setDisplayName(Blockquote, "TextPrimitive.Blockquote")
-setDisplayName(Code, "TextPrimitive.Code")
+setDisplayName(Text, "TextUI.Text")
+setDisplayName(Heading, "TextUI.Heading")
+setDisplayName(Blockquote, "TextUI.Blockquote")
+setDisplayName(Code, "TextUI.Code")

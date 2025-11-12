@@ -123,7 +123,7 @@ export const Spinner = ({ isLoading }: SpinnerProps) => {
 }
 
 
-setDisplayName(Root, 'ButtonPrimitive.Root');
-setDisplayName(Icon, 'ButtonPrimitive.Icon');
-setDisplayName(Content, 'ButtonPrimitive.Content');
-setDisplayName(Spinner, 'ButtonPrimitive.Spinner');
+setDisplayName(Root, 'ButtonUI.Root');
+setDisplayName(Icon, 'ButtonUI.Icon');
+setDisplayName(Content, 'ButtonUI.Content');
+setDisplayName(Spinner, 'ButtonUI.Spinner');

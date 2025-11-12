@@ -63,7 +63,7 @@ export const Footer = ({ className, ...rest }: FooterProps) => {
 }
 
 
-setDisplayName(Root,"CardPrimitive.Root")
-setDisplayName(Header,"CardPrimitive.Header")
-setDisplayName(Body,"CardPrimitive.Body")
-setDisplayName(Footer,"CardPrimitive.Footer")
+setDisplayName(Root,"CardUI.Root")
+setDisplayName(Header,"CardUI.Header")
+setDisplayName(Body,"CardUI.Body")
+setDisplayName(Footer,"CardUI.Footer")

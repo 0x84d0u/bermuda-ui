@@ -8,11 +8,11 @@
 export { cn } from './cn';
 export { cva , type VariantProps } from 'class-variance-authority';
 
-// Ref utilities
-export { composeRefs } from './compose-refs';
-
 // Context utilities
 export { createContext } from './create-context';
+
+// Compose ref
+export { composeRefs } from './compose-refs'
 
 // Slot component (polymorphic components)
 export { Slot } from './slot';
@@ -29,3 +29,13 @@ export type {
   RequiredBy,
   PolymorphicComponentProps,
 } from './types';
+
+
+export { 
+  BREAKPOINTS,
+  type Breakpoint,
+  type ResponsiveValue,
+  buildResponsive,
+  getBreakpointValue,
+  mergeResponsiveClasses,
+} from './responsive'

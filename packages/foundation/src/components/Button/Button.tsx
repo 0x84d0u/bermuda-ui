@@ -1,8 +1,8 @@
 import * as React from "react"
-import { ButtonPrimitive } from "@primitives"
+import { ButtonUI } from "@ui"
 
 
-export type ButtonProps = ButtonPrimitive.RootProps & {
+export type ButtonProps = ButtonUI.RootProps & {
     leftIcon?: React.ReactNode
     rightIcon?: React.ReactNode
 }
@@ -16,18 +16,18 @@ export const Button = ({
     children,
     ...rest
 }: ButtonProps) => {
-    return <ButtonPrimitive.Root
+    return <ButtonUI.Root
         size={size}
         color={color}
         isLoading={isLoading}
     >
-        {leftIcon && <ButtonPrimitive.Icon isLoading={isLoading} position='left'>{leftIcon}</ButtonPrimitive.Icon>}
-        <ButtonPrimitive.Spinner isLoading={isLoading} />
-        <ButtonPrimitive.Content isLoading={isLoading}>
+        {leftIcon && <ButtonUI.Icon isLoading={isLoading} position='left'>{leftIcon}</ButtonUI.Icon>}
+        <ButtonUI.Spinner isLoading={isLoading} />
+        <ButtonUI.Content isLoading={isLoading}>
             {children}
-        </ButtonPrimitive.Content>
-        {rightIcon && <ButtonPrimitive.Icon isLoading={isLoading} position='right'>{rightIcon}</ButtonPrimitive.Icon>}
-    </ButtonPrimitive.Root>
+        </ButtonUI.Content>
+        {rightIcon && <ButtonUI.Icon isLoading={isLoading} position='right'>{rightIcon}</ButtonUI.Icon>}
+    </ButtonUI.Root>
 }
 
 Button.displayName = "Button"
