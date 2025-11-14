@@ -1,28 +1,26 @@
-/**
- * Bermuda UI Design Tokens
- * 
- * TypeScript exports for all design tokens.
- * These reference CSS variables defined in the theme.
- */
+// ------------------------------ Shape Tokens --------------------------------- //
 
-// Colors
-export { colors, semanticColors, type SemanticColor } from './colors';
+export type Shape = "rounded" | "pill" | "square"
 
-// Spacing
-export { spacing, type SpacingKey } from './spacing';
+export const shapeClasses: Record<Shape, string> = {
+  rounded: "rounded-md",
+  pill: "rounded-full",
+  square: "rounded-sm",
+}
 
-// Typography
-export {
-  fontFamily,
-  fontSize,
-  fontWeight,
-  lineHeight,
-  type FontSize,
-  type FontWeight,
-} from './typography';
+// ------------------------------ Radius Tokens --------------------------------- //
 
-// Border Radius
-export { radius, type RadiusKey } from './radius';
+export type Radius = "none" | "sm" | "md" | "lg" | "xl" | "full"
 
-// Shadows
-export { shadow, type ShadowKey } from './shadow';
+export const radiusClasses: Record<Radius, string> = {
+  none: "rounded-none",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  xl: "rounded-xl",
+  full: "rounded-full",
+}
+
+export * from './size'
+export * from './color';
+

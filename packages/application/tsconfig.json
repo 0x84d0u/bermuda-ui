@@ -1,15 +1,8 @@
 {
   "extends": "@bermuda-ui/typescript-config/react-library.json",
   "compilerOptions": {
-    "outDir": "./dist",
-        "rootDir": ".",
-    "paths": {
-      "@hooks": ["./src/hooks/index"],
-      "@utils": ["./src/utils/index"],
-      "@ui": ["./src/ui/index"],
-      "@components": ["./src/components/index"]
-    }
+    "outDir": "./dist"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "../theme/src/lib/theme-script.client.ts", "../theme/src/components/ThemeProvider.client.tsx", "../theme/src/components/ThemeScript.tsx", "../theme/src/lib/types.ts", "../theme/src/components/ThemeToggle.client.tsx"],
   "exclude": ["node_modules", "dist"]
 }

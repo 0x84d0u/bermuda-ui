@@ -1,1 +1,7 @@
 @import '@bermuda-ui/foundation/styles';
+
+
+:root {
+    --header-height: 4rem;
+    --sidebar-width: 16rem;
+}

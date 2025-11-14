@@ -1,4 +1,5 @@
 @import "@bermuda-ui/foundation/styles";
+@import "@bermuda-ui/application/styles";
 @source "../../../packages/**/*.{ts,tsx,js,jsx}";
 
 /* 

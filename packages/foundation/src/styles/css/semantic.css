@@ -1,0 +1,35 @@
+:root {
+  --color-root: oklch(99% 0.00011 271.152);
+  --color-root-fg: oklch(27.587% 0.01023 260.743);
+  --color-surface: oklch(100% 0.00011 271.152);
+  --color-surface-fg: oklch(0% 0 0);
+  --color-accent: #1c1f24;
+  --color-accent-fg: #ffffff;
+  --color-active: #5b5ce6;
+  --color-active-fg: #ffffff;
+  --color-danger: #dc2626;
+  --color-danger-fg: #ffffff;
+
+  --color-muted-fg: #6b7280;
+  --color-border: #e5e7eb;
+  --color-overlay: rgba(0, 0, 0, 0.50);
+  --color-backdrop: rgba(0, 0, 0, 0.30);
+}
+
+.dark {
+  --color-root: #0e1116;
+  --color-root-fg: #9ca3af;
+  --color-surface: #14171d;
+  --color-surface-fg: #f3f4f6;
+  --color-accent: #e2e8f0;
+  --color-accent-fg: #0f172a;
+  --color-active: #8183ff;
+  --color-active-fg: #0e0e11;
+  --color-danger: #ef4444;
+  --color-danger-fg: #0e0e11;
+
+  --color-muted-fg: #9ca3af;
+  --color-border: #1f2937;
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-backdrop: rgba(0, 0, 0, 0.4);
+}

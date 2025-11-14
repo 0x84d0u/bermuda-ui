@@ -1,1 +1,4 @@
-export * from './Layout'
+export {
+    Layout,
+    type LayoutProps
+} from './Layout'

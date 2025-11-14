@@ -1,4 +1,8 @@
 export * from './Button';
+export * from './Icon';
 export * from './Typography';
-export * from './Layout';
+
 export * from './Container';
+export * from './Layout';
+
+export * from './Drawer';

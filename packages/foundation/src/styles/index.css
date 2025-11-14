@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import './theme.css';
-@import './semantic.css';
-@import './base.css';
+@import './css/theme.css';
+@import './css/semantic.css';
+@import './css/base.css';
 

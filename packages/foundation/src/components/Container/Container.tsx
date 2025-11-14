@@ -1,9 +1,9 @@
-import { cn, setDisplayName } from "@utils"
 import React from "react"
+import { setDisplayName } from "../../helpers"
+import { cn } from "../../styles"
+import * as ContainerTypes from './Container.types'
 
-export type Size = 'mobile' | 'tablet' | 'laptop' | 'desktop'  | 'fluid'
-
-const sizeClasses: Record<Size, string> = {
+const sizeClasses: Record<ContainerTypes.Size, string> = {
     mobile: 'max-w-screen-mobile',
     tablet: 'max-w-screen-tablet',
     laptop: 'max-w-screen-laptop',
@@ -11,37 +11,28 @@ const sizeClasses: Record<Size, string> = {
     fluid: 'max-w-unset',
 }
 
-export type Spacing = 'compact' | 'comfortable' | 'large'
 
-const spacingClasses: Record<Spacing, string> = {
-    compact: "px-4 py-2",
-    comfortable: "px-6 py-4",
-    large: "px-8 py-6",
-}
-
-export type ContainerProps = {
-    children?: React.ReactNode
-    className?: string
-    size?: Size
-    spacing?: Spacing
+const spacingClasses: Record<ContainerTypes.Spacing, string> = {
+    compact: "py-6",
+    comfortable: "py-12",
+    large: "py-32",
 }
 
 export const Container = ({
-    children,
     className,
     size = 'fluid',
-    spacing = 'comfortable',
-}: ContainerProps) => {
+    spacing,
+    ...jsxProps
+}: ContainerTypes.ContainerProps) => {
     return <div
         className={cn(
-            "w-full mx-auto",
-            spacingClasses[spacing],
+            "w-full mx-auto px-5",
+            spacing && spacingClasses[spacing],
             sizeClasses[size],
             className
         )}
-    >
-        {children}
-    </div>
+        {...jsxProps}
+    />
 }
 
 setDisplayName(Container, "Container")

@@ -1,6 +1,6 @@
 // components/layout.tsx
 import React from 'react';
-import { ResponsiveValue, buildResponsive, mergeResponsiveClasses } from '../../utils/responsive';
+import { ResponsiveValue, buildResponsive, mergeResponsiveClasses } from '../../styles/utils/responsive';
 
 type BaseLayoutProps = {
     children: React.ReactNode;
