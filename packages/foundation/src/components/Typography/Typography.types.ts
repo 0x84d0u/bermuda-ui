@@ -1,47 +1,25 @@
 
-// ----------------------- Tokens ----------------------- //
 
-import React from "react"
+export const KIND_SIZES = {
+    text: ["small", "medium", "large"],
+    heading: [1, 2, 3, 4],
+    display: ["small", "medium", "large"],
+} as const;
 
-export type Size = 'small' | 'default' | 'large'
-export type Color = 'body' | 'heading' | 'accent' | 'link' | 'muted'
+export type Kind = keyof typeof KIND_SIZES;
+export type Size<K extends Kind> = (typeof KIND_SIZES)[K][number];
+export type Weight = 'bold' | 'semibold' | 'base' | 'light';
+export type Underline = 'always' | 'hover';
+export type Color = 'body' | 'heading' | 'accent' | 'active' | 'danger' | 'muted';
 
-export type JsxProps = {
-    className?: string
-    id?: string
+
+export type TypographyProps<K extends Kind> = React.HTMLAttributes<HTMLElement> & {
+    kind: K;
+    size?: Size<K>;
+    weight?: Weight;
+    underline?: Underline;
+    color?: Color;
+    children: React.ReactNode;
+    className?: string;
+    as?: React.ElementType;
 }
-
-export type Setting = {
-    color?: Color
-    size?: Size
-    isBold?: boolean
-    isLight?: boolean
-}
-
-export type Content = {
-    children?: React.ReactNode
-    content?: React.ReactNode
-    text?: string
-}
-
-// ----------------------- Component Props ----------------------- //
-
-export type TextProps = JsxProps & Setting &
-    Content & {
-        as?: 'p' | 'span' | 'label'
-    }
-
-export type HeadingProps = JsxProps & Setting &
-    Content & {
-        as?: 'h1' | 'h2' | 'h3' | 'span'
-    }
-
-export type DisplayProps = JsxProps & Omit<Setting, 'size'> &
-    Content & {
-        as?: 'h1' | 'span'
-    }
-
-
-
-
-

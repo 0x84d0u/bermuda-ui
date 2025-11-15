@@ -1,4 +1,4 @@
-import { cn, Heading, Text } from '@bermuda-ui/foundation'
+import { cn, Typography } from '@bermuda-ui/foundation'
 import type * as SectionTypes from './Section.types'
 
 // ----------------------- Root ----------------------- //
@@ -26,8 +26,8 @@ export const Root = ({
 export const Header = ({ title, description }: SectionTypes.headerProps) => {
     if (!title && !description) return null;
     return <div>
-        {title && <Heading as='h2' isBold color='heading' size='default' text={title} />}
-        {description && <Text as='p' size='large' text={description} />}
+        {title && <Typography kind='heading' color='heading' size={2}>{title}</Typography>}
+        {description && <Typography kind='text' size='large'>{description}</Typography>}
     </div>
 }
 

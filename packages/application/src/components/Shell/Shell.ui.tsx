@@ -1,14 +1,14 @@
 import * as ShellTypes from './Shell.types'
-import { Button, cn, Container } from '@bermuda-ui/foundation'
+import { Button, cn, Container, getPlacementClass } from '@bermuda-ui/foundation'
 
 // ----------------------- Root ----------------------- //
 
 const gradientBg = `
-    radial-gradient(circle 800px at 82% 12%, rgb(from var(--color-accent) r g b / 0.025), transparent),
-    radial-gradient(circle 900px at 10% 85%, rgb(from var(--color-accent) r g b / 0.03), transparent),
-    radial-gradient(circle 700px at 55% 45%, rgb(from var(--color-accent) r g b / 0.015), transparent),
-    radial-gradient(circle 650px at 88% 70%, rgb(from var(--color-accent) r g b / 0.02), transparent),
-    var(--color-root-bg)
+    radial-gradient(circle 800px at 82% 12%, rgb(from var(--color-accent) r g b / 0.07), transparent),
+    radial-gradient(circle 900px at 10% 85%, rgb(from var(--color-accent) r g b / 0.04), transparent),
+    radial-gradient(circle 700px at 55% 45%, rgb(from var(--color-accent) r g b / 0.07), transparent),
+    radial-gradient(circle 650px at 88% 70%, rgb(from var(--color-accent) r g b / 0.03), transparent),
+    var(--color-root)
 `
 
 export const Root = ({ className, style, ...jsxProps }: ShellTypes.RootProps) => <div
@@ -32,7 +32,9 @@ export const Header = ({
     headerIsFixed,
 
     sidebarIsEnabled,
+
     toggleSidebar,
+    sidebarIsOpen,
 
     headerLeftContent,
     headerMidContent,
@@ -57,12 +59,25 @@ export const Header = ({
             "w-full bg-surface text-surface-fg",
             "shrink-0",
             headerIsFixed && "sticky top-0 z-40 bg-surface/95",
-            "border-b", headerIsBordered ? "border-border" : "border-transparent",  
+            "border-b", headerIsBordered ? "border-border" : "border-transparent",
         )}
     >
         <Container size='fluid' className='h-(--header-height) min-h-(--header-height) grid grid-cols-3 items-center gap-4'>
             <div className="flex items-center gap-1 justify-start">
-                {sidebarIsEnabled && <Button className="laptop:hidden" onClick={toggleSidebar} kind='button' variant='ghost' label="sidebar-toggle" icon={{ name: 'Menu' }} />}
+                {sidebarIsEnabled && <Button
+                    className="laptop:hidden"
+                    onClick={toggleSidebar}
+                    kind='button'
+                    variant='ghost'
+                    label="sidebar-toggle"
+                    icon={{
+                        transition: {
+                            primary: 'Menu',
+                            secondary: 'X',
+                            active: sidebarIsOpen
+                        }
+                    }}
+                />}
                 {headerLeftContent}
             </div>
             <div className="flex items-center justify-center shrink-0">{headerMidContent}</div>
@@ -93,9 +108,13 @@ export const Footer = ({
 
 export const Sidebar = ({
     sidebarIsEnabled,
-    sidebarPosition,
+    sidebarPlacement = 'left',
+    // headerIsEnabled,
+    // headerIsFixed,
+
     sidebarIsOpen,
     closeSidebar,
+
     sidebarHeaderContent,
     sidebarContent,
     sidebarFooterContent,
@@ -103,35 +122,39 @@ export const Sidebar = ({
     if (!sidebarIsEnabled) return null;
 
     return <>
-        <div
+        {/* {sidebarIsOpen && <div
             className={cn(
                 "fixed inset-0 bg-overlay z-20 laptop:hidden",
                 "transition-opacity",
-                sidebarIsOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+                getPlacementClass()
             )}
             onClick={closeSidebar}
             aria-hidden="true"
-        />
+        />} */}
+
         <aside
             role="complementary"
             aria-hidden={!sidebarIsOpen}
+            data-open={sidebarIsOpen}
             className={cn(
-                "bg-surface text-surface-fg border-r border-border",
                 "transition-transform",
-                "fixed inset-y-0 left-0 z-30",
-                // Remove top offset on mobile, let it naturally position below header
-                "top-0 tablet:top-[calc(var(--header-height)+1px)]",
-                // Account for header + border (1px) in height calculation
-                "h-svh tablet:h-[calc(100svh-var(--header-height)-1px)]",
-                "w-full tablet:w-(--sidebar-width)",
-                "flex flex-col",
-                // On desktop, stick below the header
-                "laptop:sticky laptop:top-[calc(var(--header-height)+1px)] laptop:shrink-0",
-                sidebarPosition === 'right' ? 'order-2' : 'order-0',
-
-                sidebarIsOpen ? 'translate-x-0' : sidebarPosition === 'right' ? 'translate-x-full laptop:translate-x-0' : '-translate-x-full laptop:translate-x-0',
-
                 "focus-visible:outline-none",
+
+                "fixed inset-y-0 left-0 z-30",
+                "bg-surface text-foreground border-r border-border",
+                "flex flex-col",
+
+                getPlacementClass(sidebarPlacement),
+                sidebarPlacement === 'right' ? 'order-2' : 'order-0',
+
+                // Height
+                "laptop:sticky laptop:top-[calc(var(--header-height)+1px)] laptop:shrink-0",
+                "top-[calc(var(--header-height)+1px)]",
+                "laptop:h-[calc(100svh-var(--header-height)-1px)]",
+
+                // Width
+                "w-full tablet:w-(--sidebar-width)",
+
             )}>
             {sidebarHeaderContent && <div className="shrink-0 px-6 py-4 border-b border-border">{sidebarHeaderContent}</div>}
             <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-2">{sidebarContent}</div>

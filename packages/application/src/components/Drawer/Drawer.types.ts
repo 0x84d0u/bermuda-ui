@@ -1,5 +1,4 @@
-import { ButtonTypes } from "../Button";
-import { TypographyTypes } from "../Typography";
+import { ButtonTypes } from "@bermuda-ui/foundation";
 
 // ----------------------- Tokens ----------------------- //
 
@@ -12,7 +11,6 @@ export type HeaderProps = React.HTMLAttributes<HTMLDivElement>;
 export type BodyProps = React.HTMLAttributes<HTMLDivElement>;
 export type FooterProps = React.HTMLAttributes<HTMLDivElement>;
 export type OverlayProps = React.HTMLAttributes<HTMLDivElement> & { isOpen?: boolean; };
-export type TitleProps = TypographyTypes.HeadingProps
 
 // ----------------------- Component Props ----------------------- //
 

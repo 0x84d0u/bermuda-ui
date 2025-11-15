@@ -1,30 +1,42 @@
 import React from "react";
 import * as Lucide from "lucide-react";
-import { ButtonTypes } from "../Button";
 
-
-// ----------------------- Tokens ----------------------- //
+/* ------------------------ Tokens ------------------------ */
 
 export type Name = keyof typeof Lucide;
-export type Size = 'small' | 'default' | 'large'
+export type Size = 'inline' | 'small' | 'medium' | 'large';
 
-// ----------------------- UI Props ----------------------- //
+/* ------------------------ Component Props ------------------------ */
 
 export type RootProps = React.ComponentProps<'span'> & {
-    size?: Size
-}
+  size?: Size;
+};
 
-export type SvgProps = React.SVGProps<SVGSVGElement> & {
-    size?: Size;
-    className?: string;
-    name: Name;
+export type SvgProps = Omit<React.SVGProps<SVGSVGElement>, 'name'> & {
+  name: Name;
+  size?: Size;
+  isFirst?: boolean;
+  isSecond?: boolean;
+};
 
-    isFirst?: boolean,
-    isSecond?: boolean,
-}
+// Simple icon (no transition)
+type SimpleIcon = {
+  name: Name;
+  transition?: never;
+  size?: Size;
+  className?: string;
+};
 
-// ----------------------- Component Props ----------------------- //
+// Icon with transition
+type TransitionIcon = {
+  name?: never;
+  transition: {
+    primary: Name;
+    secondary: Name;
+    active?: boolean; // true = show secondary, false/undefined = show primary
+  };
+  size?: Size;
+  className?: string;
+};
 
-export type IconProps = SvgProps & {
-  transitionName?: Name
-}
+export type IconProps = (SimpleIcon | TransitionIcon) & Omit<React.SVGProps<SVGSVGElement>, 'name'>;

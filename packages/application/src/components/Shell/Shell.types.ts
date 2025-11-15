@@ -21,7 +21,7 @@ export type Config = {
     headerIsFixed?: boolean
     headerIsBordered?: boolean
 
-    sidebarPosition?: 'left' | 'right'
+    sidebarPlacement?: 'left' | 'right'
 }
 
 export type Content = {
@@ -44,13 +44,13 @@ export type BodyProps = React.ComponentProps<'main'>
 export type HeaderProps = 
     Pick<Config, 'headerIsBordered' | 'headerIsFixed' | 'headerIsEnabled' | 'sidebarIsEnabled'> &
     Pick<Content, 'headerLeftContent' | 'headerMidContent' | 'headerRightContent' > &
-    Pick<State, 'toggleSidebar'> 
+    Pick<State, 'toggleSidebar' | 'sidebarIsOpen'> 
 
 export type FooterProps = 
     Pick<Content, 'footerContent'>
 
 export type SidebarProps =  
-    Pick<Config, 'sidebarIsEnabled' | 'sidebarPosition'> & 
+    Pick<Config, 'sidebarIsEnabled' | 'sidebarPlacement' | 'headerIsEnabled' | 'headerIsFixed'> & 
     Pick<State, 'sidebarIsOpen' | 'closeSidebar'> &
     Pick<Content, 'sidebarHeaderContent' | 'sidebarFooterContent' | 'sidebarContent'>
 

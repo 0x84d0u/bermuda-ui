@@ -1,4 +1,4 @@
-import { Container, Heading, Text } from '@bermuda-ui/foundation'
+import { Container, Typography } from '@bermuda-ui/foundation'
 import type * as PageTypes from './Page.types'
 
 export const Root = ({ children }: PageTypes.RootProps) => {
@@ -35,14 +35,11 @@ export const TableOfContent = ({ tableOfContent }: PageTypes.TableOfContentProps
         TOC
     </div>
 }
-export const Header = ({
-    title,
-    description
-}: PageTypes.HeaderProps) => {
+export const Header = ({ title, description }: PageTypes.HeaderProps) => {
     return <section className=''>
         <Container size='laptop' spacing='comfortable'>
-            <Heading as='h1' size='large' text={title} color='heading' isBold />
-            <Text as='p' size='large' text={description} />
+            <Typography kind='heading' size={1}>{title}</Typography>
+            <Typography kind='text' size='large'>{description}</Typography>
         </Container>
     </section>
 }

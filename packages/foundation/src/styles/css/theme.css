@@ -6,22 +6,26 @@
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
     --color-*: initial;
-    --color-root: var(--color-root);
-    --color-root-fg: var(--color-root-fg);
+    --color-background: var(--color-background);
     --color-surface: var(--color-surface);
-    --color-surface-fg: var(--color-surface-fg);
-    /* --color-heading: var(--color-heading); */
     --color-accent: var(--color-accent);
-    --color-accent-fg: var(--color-accent-fg);
     --color-active: var(--color-active);
-    --color-active-fg: var(--color-active-fg);
     --color-danger: var(--color-danger);
-    --color-danger-fg: var(--color-danger-fg);
 
-    --color-muted-fg: var(--color-muted-fg);
+    --color-foreground: var(--color-foreground);
+    --color-text: var(--color-text);
+    --color-muted: var(--color-muted);
+    --color-link: var(--color-link);
+    --color-accent-foreground: var(--color-accent-foreground);
+    --color-active-foreground: var(--color-active-foreground);
+    --color-danger-foreground: var(--color-danger-foreground);
+
+    --color-focus: var(--color-focus);
     --color-border: var(--color-border);
+    --color-divider: var(--color-divider);
     --color-overlay: var(--color-overlay);
     --color-backdrop: var(--color-backdrop);
+
 
     --spacing: .25rem;
 
@@ -35,20 +39,17 @@
     --container-*: initial;
 
     --text-*: initial;
-    --text-text-small: 0.8125rem;
-    --text-text-small--line-height: calc(18 / 13);
-    --text-text-medium: 0.9375rem;
-    --text-text-medium--line-height: calc(22 / 15);
-    --text-text-large: 1.0625rem;
-    --text-text-large--line-height: calc(24 / 17);
-    --text-heading-large: 2rem;
-    --text-heading-large--line-height: calc(2.5 / 2);
-    --text-heading-medium: 1.5rem;
-    --text-heading-medium--line-height: calc(2 / 1.5);
-    --text-heading-small: 1.25rem;
-    --text-heading-small--line-height: calc(1.75 / 1.25);
-    --text-display: 3rem;
-    --text-display--line-height: calc(3.5 / 3);
+    --text-small: 0.8125rem;
+    --text-medium: 1rem;
+    --text-large: 1.125rem;
+    --text-heading-4: 1.5rem;
+    --text-heading-3: 1.875rem;
+    --text-heading-2: 2.25rem;
+    --text-heading-1: 3rem;
+    --text-display-small: 3rem;
+    --text-display-medium: 3.75rem;
+    --text-display-large: 4.5rem;
+
 
     --radius-*: initial;
     --radius-action: .5pc;

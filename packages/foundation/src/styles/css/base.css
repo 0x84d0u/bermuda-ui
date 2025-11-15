@@ -1,7 +1,7 @@
 @layer base {
     body {
-        background-color: var(--color-root);
-        color: var(--color-root-fg);
+        background-color: var(--color-background);
+        color: var(--color-paragraph);
         font-family: var(--font-sans);
         font-size: var(--text-medium);
         font-weight: var(--font-weight-normal);

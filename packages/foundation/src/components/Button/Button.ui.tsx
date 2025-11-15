@@ -17,6 +17,7 @@ const rootClass = cva(cn(
   "transition-all duration-200 ease-standard",
   "cursor-pointer select-none",
   "relative inline-flex items-center justify-center",
+  "font-medium",
   // isDisabled
   "disabled:opacity-50 disabled:pointer-events-none",
 ), {
@@ -34,30 +35,33 @@ const rootClass = cva(cn(
     { kind: "button", curve: "circle", className: "rounded-circle" },
 
     // Sizes
-    { kind: 'button', size: 'default', className: "h-9 px-[1rem]" },
-    { kind: 'button', size: 'large', className: "h-12 px-[1.5rem]" },
+    { kind: 'button', size: 'default', className: "h-10 px-4 text-small" },
+    { kind: 'button', size: 'large', className: "h-12 px-6 text-medium" },
 
-    { kind: 'link', size: 'default', className: "" },
-    { kind: 'link', size: 'large', className: "" },
+    // Shape
+    { kind: "button", shape: "square", className: "px-0" },
+
+
+    { kind: 'link', size: 'default', className: "text-medium" },
+    { kind: 'link', size: 'large', className: "text-largee" },
 
     // Colors
-    { kind: 'button', isActive: false, variant: "primary", className: "border bg-accent text-accent-fg border-transparent" },
-    { kind: 'button', isActive: false, variant: "secondary", className: "border bg-surface text-surface-fg border-border" },
-    { kind: 'button', isActive: false, variant: "danger", className: "border bg-danger text-danger-fg border-transparent" },
-    { kind: 'button', isActive: false, variant: "ghost", className: "border text-surface-fg border-transparent" },
+    { kind: 'button', isActive: false, variant: "primary", className: "border bg-accent text-accent-foreground border-transparent hover:bg-accent/90" },
+    { kind: 'button', isActive: false, variant: "secondary", className: "border bg-surface text-foreground border-border hover:bg-surface/80" },
+    { kind: 'button', isActive: false, variant: "danger", className: "border bg-danger text-danger-foreground border-transparent hover:bg-danger/90" },
+    { kind: 'button', isActive: false, variant: "ghost", className: "border text-surface-foreground border-transparent hover:bg-surface/50" },
 
+    { kind: 'button', isActive: true, className: "border bg-active text-active-foreground border-transparent" },
 
-    { kind: 'link', isActive: false, variant: "inline", className: "text-active" },
-    { kind: 'link', isActive: false, variant: "breadcrumb", className: "text-muted-fg" },
-    { kind: 'link', isActive: false, variant: "toc", className: "text-muted-fg" },
-    { kind: 'link', isActive: false, variant: "navbar", className: "text-surface-fg" },
+    { kind: 'link', isActive: false, variant: "inline", className: "text-link hover:underline" },
+    { kind: 'link', isActive: false, variant: "breadcrumb", className: "text-muted hover:text-foreground" },
+    { kind: 'link', isActive: false, variant: "toc", className: "text-muted hover:text-foreground" },
+    { kind: 'link', isActive: false, variant: "navbar", className: "text-muted hover:text-foreground" },
 
-    // Active colors
-    { kind: 'button', isActive: true, className: "border bg-active text-active-fg border-transparent" },
-
-    { kind: 'link', isActive: false, variant: "breadcrumb", className: "text-active" },
-    { kind: 'link', isActive: false, variant: "toc", className: "text-active" },
-    { kind: 'link', isActive: false, variant: "navbar", className: "text-active" },
+    { kind: 'link', isActive: true, variant: "inline", className: "text-link underline" },
+    { kind: 'link', isActive: true, variant: "breadcrumb", className: "text-active font-semibold" },
+    { kind: 'link', isActive: true, variant: "toc", className: "text-active font-semibold" },
+    { kind: 'link', isActive: true, variant: "navbar", className: "text-active font-semibold" },
   ]
 })
 
@@ -85,14 +89,14 @@ export const Root = React.forwardRef(<K extends Types.Kind>(
 
   return <Comp
     ref={ref}
-    disabled={isDisabled || isLoading}
-    className={cn(rootClass({ kind, variant, size, curve, shape , isActive}), className)}
+    disabled={!!(isDisabled || isLoading)}
+    className={cn(rootClass({ kind, variant, size, curve, shape, isActive }), className)}
     {...jsxProps}
   />
 })
 
 export const LabelContent = ({ startIcon, label, endIcon, isLoading }: Types.LabelContentProps) => (
-  <span className="inline-flex items-center gap-1">
+  <span className="inline-flex items-center gap-2">
     {!!startIcon && <Icon {...startIcon} className={cn("-ml-0.5", startIcon.className)} />}
     <span className={cn(isLoading && "invisible")}>{label}</span>
     {!!endIcon && <Icon {...endIcon} className={cn("-mr-0.5", endIcon.className)} />}

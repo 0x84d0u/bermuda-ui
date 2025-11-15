@@ -1,35 +1,45 @@
+/* --------------------------------- LIGHT THEME --------------------------------- */
 :root {
-  --color-root: oklch(99% 0.00011 271.152);
-  --color-root-fg: oklch(27.587% 0.01023 260.743);
-  --color-surface: oklch(100% 0.00011 271.152);
-  --color-surface-fg: oklch(0% 0 0);
-  --color-accent: #1c1f24;
-  --color-accent-fg: #ffffff;
-  --color-active: #5b5ce6;
-  --color-active-fg: #ffffff;
-  --color-danger: #dc2626;
-  --color-danger-fg: #ffffff;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --color-accent: #000000;
+  --color-active: #3b82f6;
+  --color-danger: #ef4444;
 
-  --color-muted-fg: #6b7280;
+  --color-foreground: #111827;
+  --color-text: #4b5563;
+  --color-muted: #9ca3af;
+  --color-link: blue;
+  --color-accent-foreground: #ffffff;
+  --color-active-foreground: #ffffff;
+  --color-danger-foreground: #ffffff;
+
+  --color-focus: yellow;
   --color-border: #e5e7eb;
-  --color-overlay: rgba(0, 0, 0, 0.50);
-  --color-backdrop: rgba(0, 0, 0, 0.30);
+  --color-divider: #f3f4f6;
+  --color-overlay: rgba(17, 24, 39, 0.5);
+  --color-backdrop: rgba(17, 24, 39, 0.3);
 }
 
+/* --------------------------------- DARK THEME --------------------------------- */
 .dark {
-  --color-root: #0e1116;
-  --color-root-fg: #9ca3af;
-  --color-surface: #14171d;
-  --color-surface-fg: #f3f4f6;
-  --color-accent: #e2e8f0;
-  --color-accent-fg: #0f172a;
-  --color-active: #8183ff;
-  --color-active-fg: #0e0e11;
-  --color-danger: #ef4444;
-  --color-danger-fg: #0e0e11;
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-accent: #000000;
+  --color-active: #60a5fa;
+  --color-danger: #f87171;
 
-  --color-muted-fg: #9ca3af;
-  --color-border: #1f2937;
-  --color-overlay: rgba(0, 0, 0, 0.6);
-  --color-backdrop: rgba(0, 0, 0, 0.4);
+  --color-foreground: #f8fafc;
+  --color-text: #94a3b8;
+  --color-muted: #475569;
+  --color-link: blue;
+  --color-accent-foreground: #0f172a;
+  --color-active-foreground: #f8fafc;
+  --color-danger-foreground: #0f172a;
+
+  --color-focus: yellow;
+  --color-border: #374151;
+  --color-divider: #f3f4f6;
+  --color-overlay: rgba(0, 0, 0, 0.7);
+  --color-backdrop: rgba(0, 0, 0, 0.5);
 }

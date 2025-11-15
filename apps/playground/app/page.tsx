@@ -1,10 +1,10 @@
-
-import { Page, Section } from "@bermuda-ui/application";
-
-import { Shell } from "@bermuda-ui/application/client";
 import { Button, Container } from "@bermuda-ui/foundation";
-import { Drawer } from "@bermuda-ui/foundation/client";
 import { ThemeModeToggle } from "@bermuda-ui/theme/client";
+import { Page, Section } from "@bermuda-ui/application";
+import { Shell , Drawer} from "@bermuda-ui/application/client";
+
+
+import ComponentPlayground from "./ComponentPlayground";
 
 export default function Home() {
     return <Shell
@@ -14,7 +14,7 @@ export default function Home() {
 
         headerIsFixed
         headerIsBordered
-        sidebarPosition="left"
+        // sidebarPosition="left"
 
         headerLeftContent={<ThemeModeToggle />}
         headerRightContent={<Drawer
@@ -40,19 +40,13 @@ export default function Home() {
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
         >
 
-            <Section
-                title="Section title"
-                description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
-            >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
-            </Section>
-
 
             <Container size="laptop" className="py-12">
             </Container>
 
             <Container size="laptop" className="py-12">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
+                <ComponentPlayground />
+
             </Container>
 
 
