@@ -1,5 +1,5 @@
 import React from "react"
-import { setDisplayName } from "../../helpers"
+import { setDisplayName } from "../../utils"
 import { cn } from "../../styles"
 import * as ContainerTypes from './Container.types'
 

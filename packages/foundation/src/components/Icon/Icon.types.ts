@@ -6,7 +6,7 @@ import { ButtonTypes } from "../Button";
 // ----------------------- Tokens ----------------------- //
 
 export type Name = keyof typeof Lucide;
-export type Size = ButtonTypes.Size
+export type Size = 'small' | 'default' | 'large'
 
 // ----------------------- UI Props ----------------------- //
 

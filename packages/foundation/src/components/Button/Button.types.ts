@@ -1,72 +1,53 @@
-import React from "react"
-import { IconTypes } from "../Icon"
+import React from "react";
+import { IconProps } from "../Icon/Icon.types";
 
-// ----------------------- Tokens ----------------------- //
 
-export type Color = 'default' | 'accent' | 'danger' | 'ghost'
-export type Size = 'default' | 'small' | 'large'
+/* ------------------------ Tokens  ------------------------ */
 
-// ----------------------- Core types ----------------------- //
+export const KIND_VARIANTS = {
+  button: ["primary", "secondary", "ghost", "danger"],
+  link: ["inline", "breadcrumb", "toc", "navbar"],
+} as const;
 
-export type JsxProps = Pick<
-    React.ComponentProps<'button'>,
-    'className' | 'onClick' | 'type' | 'ref' | 'aria-label'
->
+export type Kind = keyof typeof KIND_VARIANTS;
+export type Variant<K extends Kind> = typeof KIND_VARIANTS[K][number];
+export type Size = 'default' | 'large'
+export type Curve = 'default' | 'circle'
+export type Shape = 'default' | 'square' | 'fullwidth'
 
-export type Config = {
-    color?: Color
-    fullWidth?: boolean
-    size?: Size
-    isCircle?: boolean
-    iconProps?: IconTypes.IconProps
-    showBadge?: boolean
-    badgePulse?: boolean
+/* ------------------------ Component Props ------------------------ */
+
+export type BadgeProps = { isPulsing?: boolean };
+
+type JsxProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+
+export type RootProps<K extends Kind> = JsxProps & {
+  isLoading?: boolean;
+  isActive?: boolean;
+  isDisabled?: boolean;
+
+  kind?: K,
+  variant?: Variant<K>
+  size?: Size
+  curve?: Curve
+  shape?: Shape
+
+  asChild?: boolean
 }
 
-export type State = {
-    isLoading?: boolean
-    isActive?: boolean
-    isDisabled?: boolean
-}
 
-export type Content = {
-    iconOnly?: IconTypes.Name
-    iconsOnly?: IconTypes.Name[]
-    iconStart?: IconTypes.Name
-    iconEnd?: IconTypes.Name
-    label?: string
-}
+export type ButtonProps<K extends Kind = 'button'> = RootProps<K>
+  & Content
+  & {
+    badgeEnabled?: boolean
+    badgePulsing?: boolean
+  }
 
-// ----------------------- UI Props ----------------------- //
+/* ------------------------ Content management ------------------------ */
 
-export type RootProps =
-    JsxProps &
-    Pick<Config, 'color' | 'fullWidth' | 'size' | 'isCircle'> &
-    State & {
-        children?: React.ReactNode
-        isSquare?: boolean
-    }
+type IconContent = { icon: IconProps; label?: string; startIcon?: never; endIcon?: never; };
+type LabelContent = { label: string; icon?: never; startIcon?: IconProps; endIcon?: IconProps; };
+type Content = IconContent | LabelContent;
 
-export type SpinnerProps = Omit<IconTypes.IconProps, 'name'>
-    
-export type LabelProps =
-    Pick<State, 'isLoading'> & {
-        children?: string
-    }
-
-export type IconProps = IconTypes.IconProps & {
-    position?: 'left' | 'right' | 'single' | 'double'
-}
-
-export type BadgeProps = {
-    show?: boolean
-    pulse?: boolean;
-}
-
-// ----------------------- Component Props ----------------------- //
-
-export type ButtonProps =
-    JsxProps &
-    State &
-    Content &
-    Config
+export type LabelContentProps = Pick<LabelContent, "label" | "startIcon" | "endIcon"> & { isLoading?: boolean };
+export type IconContentProps = Pick<IconContent, "icon" | "label"> & { isLoading?: boolean };

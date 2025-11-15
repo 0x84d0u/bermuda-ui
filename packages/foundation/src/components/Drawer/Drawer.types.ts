@@ -1,31 +1,18 @@
 import { ButtonTypes } from "../Button";
 import { TypographyTypes } from "../Typography";
 
-
 // ----------------------- Tokens ----------------------- //
 
-
 export type Placement = "left" | "right" | "top" | "bottom";
-
 
 // ----------------------- UI Props ----------------------- //
 
 export type RootProps = React.HTMLAttributes<HTMLDivElement> & { placement?: Placement; isOpen?: boolean; };
-
-
-
 export type HeaderProps = React.HTMLAttributes<HTMLDivElement>;
 export type BodyProps = React.HTMLAttributes<HTMLDivElement>;
 export type FooterProps = React.HTMLAttributes<HTMLDivElement>;
-
 export type OverlayProps = React.HTMLAttributes<HTMLDivElement> & { isOpen?: boolean; };
-
-export type CloseProps = ButtonTypes.ButtonProps
-export type TriggerProps = ButtonTypes.ButtonProps;
-
 export type TitleProps = TypographyTypes.HeadingProps
-
-
 
 // ----------------------- Component Props ----------------------- //
 
@@ -34,7 +21,7 @@ export type DrawerProps = {
     placement?: Placement;
 
     // Trigger props
-    triggerProps?: TriggerProps;
+    triggerProps?: ButtonTypes.ButtonProps;
 
     // Content props
     title?: React.ReactNode;
@@ -51,7 +38,7 @@ export type DrawerProps = {
     preventBodyScroll?: boolean;
 
     // Style props
-    closeProps?: CloseProps;
+    closeProps?: ButtonTypes.ButtonProps;
     rootProps?: Partial<RootProps>;
     overlayProps?: Partial<OverlayProps>;
 };

@@ -62,7 +62,7 @@ export const Header = ({
     >
         <Container size='fluid' className='h-(--header-height) min-h-(--header-height) grid grid-cols-3 items-center gap-4'>
             <div className="flex items-center gap-1 justify-start">
-                {sidebarIsEnabled && <Button className="laptop:hidden" onClick={toggleSidebar} aria-label="sidebar-toggle" iconOnly='Menu' />}
+                {sidebarIsEnabled && <Button className="laptop:hidden" onClick={toggleSidebar} kind='button' variant='ghost' label="sidebar-toggle" icon={{ name: 'Menu' }} />}
                 {headerLeftContent}
             </div>
             <div className="flex items-center justify-center shrink-0">{headerMidContent}</div>

@@ -3,12 +3,13 @@
 import React from "react"
 import * as DrawerUI from "./Drawer.ui";
 import * as DrawerTypes from './Drawer.types'
+import { Button } from "../Button";
 
 
 export const Drawer = ({
     placement = "right",
 
-    triggerProps = { label: "Open drawer" },
+    triggerProps,
     title,
     headerContent,
     footerContent,
@@ -21,7 +22,7 @@ export const Drawer = ({
     closeOnEscape = true,
     preventBodyScroll = true,
 
-    closeProps,
+    closeProps = { icon: { name: 'X' } },
     rootProps,
     overlayProps,
 }: DrawerTypes.DrawerProps) => {
@@ -146,7 +147,7 @@ export const Drawer = ({
 
     return (
         <>
-            <DrawerUI.Trigger ref={triggerRef} {...triggerProps} onClick={open} />
+            <Button label="Open drawer" kind="button" variant="ghost" {...triggerProps} ref={triggerRef} onClick={open} />
             {isOpen && (
                 <>
                     <DrawerUI.Overlay
@@ -167,7 +168,7 @@ export const Drawer = ({
                                 {title && <DrawerUI.Title id={titleId}>{title}</DrawerUI.Title>}
                                 {headerContent}
                             </div>
-                            <DrawerUI.CloseButton {...closeProps} onClick={close} />
+                            <Button {...closeProps} onClick={close} />
                         </DrawerUI.Header>
                         <DrawerUI.Body id={descriptionId}>{children}</DrawerUI.Body>
                         {footerContent && <DrawerUI.Footer>{footerContent}</DrawerUI.Footer>}

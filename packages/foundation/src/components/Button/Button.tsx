@@ -1,50 +1,70 @@
-import type * as ButtonTypes from './Button.types'
-import * as ButtonUI from './Button.ui'
+import * as React from "react";
+import * as UI from "./Button.ui";
+import * as Types from "./Button.types";
 
-export const Button = ({
-    color,
-    fullWidth,
-    size,
-    isCircle,
-    iconProps,
-    showBadge,
-    badgePulse,
 
-    isLoading,
-    isActive,
-    isDisabled,
-
-    iconOnly,
-    iconsOnly,
-    iconStart,
-    iconEnd,
+/* ------------------------ Button Component ------------------------ */
+export const Button = React.forwardRef(<K extends Types.Kind>(
+  {
     label,
+    icon,
+    startIcon,
+    endIcon,
+
+    badgeEnabled = false,
+    badgePulsing = false,
+
+    isLoading = false,
+    isActive = false,
+    isDisabled = false,
+
+    kind,
+    variant,
+    size = 'default',
+    curve = 'default',
+    shape = 'default',
+
 
     ...jsxProps
-}: ButtonTypes.ButtonProps) => {
-    const state: ButtonTypes.State = { isActive, isDisabled, isLoading }
-    const isIconOnly = !!iconOnly
-    const isIconsOnly = !!(iconsOnly && iconsOnly.length === 2)
+  }: Types.ButtonProps<K>,
+  ref: React.Ref<HTMLButtonElement>
+) => {
+  const _kind = (kind ?? "button") as K;
 
-    const content = isIconOnly ? <ButtonUI.Icon name={iconOnly} position='single' size={size}/> :
-        isIconsOnly ? <ButtonUI.Icon name={iconsOnly[0]} transitionName={iconsOnly[1]} position='double' size={size} /> :
-            <ButtonUI.Label isLoading={isLoading}>{label}</ButtonUI.Label>
+  // Default variant depends on computed _kind
+  const defaultVariant = Types.KIND_VARIANTS[_kind][0];
+  const _variant = (variant ?? defaultVariant) as Types.Variant<K>;
 
-    return <ButtonUI.Root
-        color={color}
-        fullWidth={fullWidth}
-        aria-label={label}
-        size={size}
-        isCircle={isCircle}
-        isSquare={isIconOnly || isIconsOnly}
-        {...state}
-        {...jsxProps}
+  const isIconOnly = UI.isIconOnly(icon);
+  const isLabelOnly = UI.isLabelOnly(label, icon);
+
+  return (
+    <UI.Root
+      isLoading={isLoading}
+      isActive={isActive}
+      isDisabled={isDisabled}
+
+      kind={_kind}
+      variant={_variant}
+      size={size}
+      curve={curve}
+      shape={isIconOnly ? 'square' : shape}
+
+      ref={ref}
+      {...jsxProps}
     >
-        <ButtonUI.Badge show={showBadge} pulse={badgePulse} />
-        {isLoading && <ButtonUI.Spinner size={size}/>}
-        {iconStart && <ButtonUI.Icon name={iconStart} position='left' size={size} />}
-        {content}
-        {iconEnd && <ButtonUI.Icon name={iconEnd} position='right' size={size} />}
-    </ButtonUI.Root>
-
+      {badgeEnabled && <UI.Badge isPulsing={badgePulsing} />}
+      {isIconOnly && <UI.IconContent icon={icon!} label={label} isLoading={isLoading} />}
+      {isLabelOnly && (
+        <UI.LabelContent
+          label={label!}
+          startIcon={startIcon}
+          endIcon={endIcon}
+          isLoading={isLoading}
+        />
+      )}
+      {isLoading && <UI.Spinner />}
+    </UI.Root>
+  );
 }
+);

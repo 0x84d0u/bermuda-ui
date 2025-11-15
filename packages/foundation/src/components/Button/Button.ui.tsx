@@ -1,119 +1,125 @@
-import { cn } from '../../styles'
-import { Icon as _Icon } from '../Icon'
-import type * as ButtonTypes from './Button.types'
+import React from "react";
+import * as Types from "./Button.types";
+
+import { cn, cva } from "../../styles";
+
+import { Icon, IconTypes } from "../Icon";
+import { Slot } from "@radix-ui/react-slot";
+
+/* ------------------------ Helpers ------------------------ */
+
+export const isLabelOnly = (label?: string, icon?: IconTypes.IconProps) => !!(label && !icon);
+export const isIconOnly = (icon?: IconTypes.IconProps) => !!icon;
+
+/* ------------------------ Helpers ------------------------ */
+
+const rootClass = cva(cn(
+  "transition-all duration-200 ease-standard",
+  "cursor-pointer select-none",
+  "relative inline-flex items-center justify-center",
+  // isDisabled
+  "disabled:opacity-50 disabled:pointer-events-none",
+), {
+  variants: {
+    kind: { button: "", link: "", },
+    variant: { primary: "", secondary: "", ghost: "", danger: "", inline: "", breadcrumb: "", toc: "", navbar: "", },
+    size: { default: "", large: "" },
+    curve: { default: "", circle: "" },
+    shape: { default: "", square: "aspect-square", fullwidth: "w-full" },
+    isActive: { true: "" },
+  },
+  compoundVariants: [
+    // Curve
+    { kind: "button", curve: "default", className: "rounded-action" },
+    { kind: "button", curve: "circle", className: "rounded-circle" },
+
+    // Sizes
+    { kind: 'button', size: 'default', className: "h-9 px-[1rem]" },
+    { kind: 'button', size: 'large', className: "h-12 px-[1.5rem]" },
+
+    { kind: 'link', size: 'default', className: "" },
+    { kind: 'link', size: 'large', className: "" },
+
+    // Colors
+    { kind: 'button', isActive: false, variant: "primary", className: "border bg-accent text-accent-fg border-transparent" },
+    { kind: 'button', isActive: false, variant: "secondary", className: "border bg-surface text-surface-fg border-border" },
+    { kind: 'button', isActive: false, variant: "danger", className: "border bg-danger text-danger-fg border-transparent" },
+    { kind: 'button', isActive: false, variant: "ghost", className: "border text-surface-fg border-transparent" },
 
 
-// ----------------------- Helpers ----------------------- //
+    { kind: 'link', isActive: false, variant: "inline", className: "text-active" },
+    { kind: 'link', isActive: false, variant: "breadcrumb", className: "text-muted-fg" },
+    { kind: 'link', isActive: false, variant: "toc", className: "text-muted-fg" },
+    { kind: 'link', isActive: false, variant: "navbar", className: "text-surface-fg" },
 
-const sizeClasses = {
-    global: {
-        small: "h-7 text-text-small",
-        default: "h-10 text-text-medium",
-        large: "h-12 text-text-large"
-    } as Record<ButtonTypes.Size, string>,
-    withLabel: {
-        small: "px-[0.625rem] gap-1",
-        default: "px-[1rem] gap-2",
-        large: "px-[1.5rem] gap-2.5"
-    } as Record<ButtonTypes.Size, string>,
-    iconOnly: {
-        small: "w-7",
-        default: "w-10",
-        large: "w-12"
-    } as Record<ButtonTypes.Size, string>,
+    // Active colors
+    { kind: 'button', isActive: true, className: "border bg-active text-active-fg border-transparent" },
 
-}
+    { kind: 'link', isActive: false, variant: "breadcrumb", className: "text-active" },
+    { kind: 'link', isActive: false, variant: "toc", className: "text-active" },
+    { kind: 'link', isActive: false, variant: "navbar", className: "text-active" },
+  ]
+})
 
-const colorClasses = {
-    props: {
-        default: 'bg-surface text-surface-fg border-border',
-        accent: 'bg-accent text-accent-fg border-transparent',
-        danger: 'bg-danger text-danger-fg border-transparent',
-        ghost: "border-transparent text-surface-fg"
-    } as Record<ButtonTypes.Color, string>,
-    state: {
-        active: "bg-active text-active-fg",
-        disabled: "disabled:opacity-50 disabled:pointer-events-none"
-    }
-}
+/* ------------------------ Components ------------------------ */
 
-// ----------------------- Root Component ----------------------- //
-
-
-export const Root = ({
-    children,
-    color = 'ghost',
-    size = 'default',
-    isCircle,
-    fullWidth,
+export const Root = React.forwardRef(<K extends Types.Kind>(
+  {
+    isLoading,
     isActive,
     isDisabled,
-    isLoading,
+
+    kind,
+    variant,
+    size,
+    curve,
+    shape,
+
+    asChild,
     className,
-    isSquare,
     ...jsxProps
-}: ButtonTypes.RootProps) => {
+  }: Types.RootProps<K>,
+  ref: React.Ref<HTMLButtonElement>
+) => {
+  const Comp = (asChild ? Slot : 'button') as React.ElementType;
 
+  return <Comp
+    ref={ref}
+    disabled={isDisabled || isLoading}
+    className={cn(rootClass({ kind, variant, size, curve, shape , isActive}), className)}
+    {...jsxProps}
+  />
+})
 
-    return <button
-        type='button'
-        disabled={isLoading || isDisabled}
-        className={cn(
-            "transition-all duration-200 ease-standard",
-            "cursor-pointer select-none",
-            "relative",
-            "inline-flex items-center justify-center",
-            "font-medium font-sans",
-            "border",
-            isCircle ? 'rounded-circle' : 'rounded-action',
-            isActive ? colorClasses.state.active : colorClasses.props[color],
-            colorClasses.state.disabled,
-            sizeClasses.global[size],
-            isSquare ? sizeClasses.iconOnly[size] : sizeClasses.withLabel[size],
-            fullWidth && "w-full",
-            isLoading && "cursor-wait",
-            className
-        )}
-        {...jsxProps}
-    >
-        {children}
-    </button>
+export const LabelContent = ({ startIcon, label, endIcon, isLoading }: Types.LabelContentProps) => (
+  <span className="inline-flex items-center gap-1">
+    {!!startIcon && <Icon {...startIcon} className={cn("-ml-0.5", startIcon.className)} />}
+    <span className={cn(isLoading && "invisible")}>{label}</span>
+    {!!endIcon && <Icon {...endIcon} className={cn("-mr-0.5", endIcon.className)} />}
+  </span>
+);
 
-}
+export const IconContent = ({ icon, isLoading }: Types.IconContentProps) => (
+  <span className="inline-flex items-center gap-1">
+    <Icon {...icon} className={cn(isLoading && "invisible", icon.className)} />
+  </span>
+);
 
-// ----------------------- Label ----------------------- //
+export const Spinner = () => (
+  <span className="absolute inset-0 flex items-center justify-center">
+    <Icon name="Loader" className="animate-spin text-current" />
+  </span>
+);
 
-export const Label = ({ children, isLoading }: ButtonTypes.LabelProps) => <span className={cn("inline-flex items-center ", isLoading && "invisible")}>{children}</span>
-
-// ----------------------- Icon ----------------------- //
-
-export const Icon = ({ position, name, transitionName, className, ...rest }: ButtonTypes.IconProps) => {
-    switch (position) {
-        case 'left': return <_Icon name={name} className={cn("-ml-0.5", className)} {...rest} />
-        case 'right': return <_Icon name={name} className={cn("-mr-0.5", className)} {...rest} />
-        case 'single': return <_Icon name={name} className={className} {...rest} />
-        case 'double': return <_Icon name={name} transitionName={transitionName} className={className} {...rest} />
-        default: return null
-    }
-}
-
-
-// ----------------------- Spinner ----------------------- //
-
-export const Spinner = (props: ButtonTypes.SpinnerProps) => <span className="absolute inset-0 flex items-center justify-center">
-    <_Icon name='Loader' className="animate-spin text-current" {...props}/>
-</span>
-
-// ----------------------- Badge ----------------------- //
-
-export const Badge = ({ show = false, pulse = false }: ButtonTypes.BadgeProps) => show && <span
+export const Badge = ({ isPulsing }: Types.BadgeProps) => (
+  <span
     className={cn(
-        "absolute",
-        "rounded-full select-none pointer-events-none whitespace-nowrap",
-        "inline-flex items-center justify-center",
-        "text-xs font-medium font-sans",
-        "size-2 bg-danger ring-2 ring-danger/50 right-1 top-1",
-        pulse && "animate-pulse"
-
+      "absolute",
+      "rounded-full select-none pointer-events-none whitespace-nowrap",
+      "inline-flex items-center justify-center",
+      "text-xs font-medium font-sans",
+      "size-2 bg-danger ring-2 ring-danger/50 right-1 top-1",
+      isPulsing && "animate-pulse"
     )}
-/>
+  />
+);

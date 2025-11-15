@@ -3,7 +3,7 @@ import { cn } from "../../styles";
 
 import * as DrawerTypes from './Drawer.types'
 
-import { Button } from "../Button";
+// import { Button, ButtonTypes } from "../Button";
 import { Heading } from "../Typography";
 
 
@@ -64,5 +64,3 @@ export const Body = ({ className, ...props }: DrawerTypes.BodyProps) => <div cla
 export const Footer = ({ className, ...props }: DrawerTypes.FooterProps) => <div className={cn("p-4 border-t border-border text-sm text-muted-foreground", className)} {...props} />
 
 export const Title = (props: DrawerTypes.TitleProps) => <Heading as="h2" size="small" {...props} />
-export const CloseButton = (props: DrawerTypes.CloseProps) => <Button iconOnly="X" aria-label="Close" {...props} />
-export const Trigger = React.forwardRef<HTMLButtonElement, DrawerTypes.TriggerProps>(({ type, ...rest }, ref) => <Button ref={ref} {...rest} />)

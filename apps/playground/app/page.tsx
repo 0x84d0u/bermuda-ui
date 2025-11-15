@@ -1,5 +1,6 @@
 
-import { Page } from "@bermuda-ui/application";
+import { Page, Section } from "@bermuda-ui/application";
+
 import { Shell } from "@bermuda-ui/application/client";
 import { Button, Container } from "@bermuda-ui/foundation";
 import { Drawer } from "@bermuda-ui/foundation/client";
@@ -19,10 +20,10 @@ export default function Home() {
         headerRightContent={<Drawer
             title="Cart"
             placement="right"
-            triggerProps={{
-                iconOnly: "ShoppingBasket",
-                showBadge: true
-            }}
+        // triggerProps={{
+        //     iconOnly: "ShoppingBasket",
+        //     showBadge: true
+        // }}
         >
             <p>Your content here</p>
         </Drawer>}
@@ -39,81 +40,66 @@ export default function Home() {
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
         >
 
+            <Section
+                title="Section title"
+                description="Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
+            </Section>
 
+
+            <Container size="laptop" className="py-12">
+            </Container>
+
+            <Container size="laptop" className="py-12">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
+            </Container>
 
 
             <Container size="laptop" className="py-12">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
             </Container>
 
-            <Container size="laptop" className="py-12">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
-            </Container>
 
+            <div className="p-10 space-y-10">
+                <Section title="Kind / Variant">
+                    <Row>
+                        <Button kind="button" variant="primary" label="Primary button" />
+                        <Button kind="button" variant="secondary" label="Secondary button" />
+                        <Button kind="button" variant="danger" label="Danger button" />
+                        <Button kind="button" variant="ghost" label="Ghost button" />
+                    </Row>
+                    <Row>
+                        <Button kind="link" variant="inline" label="Unline link" />
+                        <Button kind="link" variant="breadcrumb" label="Breadcrumb link" />
+                        <Button kind="link" variant="toc" label="Toc link" />
+                        <Button kind="link" variant="navbar" label="Navbar link" />
+                    </Row>
+                </Section>
 
-            <Container size="laptop" className="py-12">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
-            </Container>
+                <Section title="Large button">
+                    <Row>
+                        <Button kind="button" size="large" label="Large button" />
+                    </Row>
+                </Section>
 
+                <Section title="Large button">
+                    <Row>
+                        <Button kind="button" size="large" label="Large button" />
+                        <Button kind="button" curve="circle" label="Circle button" />
+                        <Button kind="button" shape="fullwidth" label="Full width button" />
+                        <Button kind="button" shape="square" label="Square" />
+                    </Row>
+                </Section>
 
-            <Container className="space-y-3">
-                {/* <Button isLoading> Hello </Button> */}
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> Color </b>
-                    <Button label="Default" color="default" />
-                    <Button label="Accent" color="accent" />
-                    <Button label="Danger" color="danger" />
-                    <Button label="Ghost" color="ghost" />
-                </div>
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> Size </b>
-                    <Button label="Small" color="default" size="small" />
-                    <Button label="Default" color="default" size="default" />
-                    <Button label="Large" color="default" size="large" />
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> FullWidth </b>
-                    <Button label="Default" color="default" fullWidth />
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> Badge </b>
-                    <Button label="Badge" showBadge />
-                    <Button label="Badge pulse" showBadge badgePulse />
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> Circle </b>
-                    <Button label="Default" color="default" isCircle />
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> State </b>
-                    <Button label="Active" isActive />
-                    <Button label="Disabled" isDisabled />
-                    <Button label="Loading" isLoading />
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> Icon </b>
-                    <Button label="Icon only" iconOnly="User" />
-                    <Button label="Start" iconStart="Download" />
-                    <Button label="End" iconEnd="ArrowRight" />
-                    <Button label="Transition" iconsOnly={['AArrowDown', 'AArrowUp']} />
-                </div>
-
-                <div className="flex gap-2 items-center">
-                    <b className="w-24"> Size </b>
-                    <Button iconOnly="Usb" size="small" />
-                    <Button iconOnly="Usb" size="default" />
-                    <Button iconOnly="Usb" size="large" />
-                </div>
-
-            </Container>
+            </div>
 
         </Page>
 
 
     </Shell>
+}
+
+function Row({ children }: { children: React.ReactNode }) {
+    return <div className="flex flex-wrap gap-4">{children}</div>;
 }

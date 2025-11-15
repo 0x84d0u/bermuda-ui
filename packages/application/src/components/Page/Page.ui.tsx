@@ -13,11 +13,9 @@ export const Wrapper = ({ children }: PageTypes.WrapperProps) => {
     </div>
 }
 
-
 export const Sidbebar = ({
     sidebarContent,
     tableOfContent
-
 }: PageTypes.SidebarProps) => {
     const hasToc = !!(tableOfContent && tableOfContent.length > 0)
     const hasContent = !!sidebarContent

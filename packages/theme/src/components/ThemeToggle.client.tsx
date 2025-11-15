@@ -6,17 +6,19 @@ import { useTheme } from "./ThemeProvider.client";
 export const ThemeModeToggle = () => {
   const { toggleMode, themeMode, mounted } = useTheme();
 
-  if (!mounted) return <Button isLoading aria-label="theme-toggle" iconOnly="Loader" />;
+  if (!mounted) return <Button isLoading aria-label="theme-toggle" icon={{ name: 'Loader' }} />;
 
   const isDark = themeMode === "dark";
 
   return <Button
-    aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+    kind='button'
+    variant='ghost'
+    label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     onClick={toggleMode}
-    iconsOnly={[
-      isDark ? 'Moon' : 'Sun',
-      isDark ? 'Sun' : 'Moon'
-    ]}
+    icon={{
+      name: isDark ? 'Moon' : 'Sun',
+      transitionName: isDark ? 'Sun' : 'Moon'
+    }}
   />
 
 };
