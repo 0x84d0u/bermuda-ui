@@ -145,6 +145,9 @@ export const Sidebar = ({
                 "flex flex-col",
 
                 getPlacementClass(sidebarPlacement),
+                sidebarPlacement === 'right'
+                    ? "fixed inset-y-0 right-0 z-30 border-l border-border" // Right side
+                    : "fixed inset-y-0 left-0 z-30 border-r border-border", // Default Left side
                 sidebarPlacement === 'right' ? 'order-2' : 'order-0',
 
                 // Height
@@ -159,7 +162,7 @@ export const Sidebar = ({
             {sidebarHeaderContent && <div className="shrink-0 px-6 py-4 border-b border-border">{sidebarHeaderContent}</div>}
             <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-2">{sidebarContent}</div>
             {sidebarFooterContent && <div className="shrink-0 px-6 py-4 border-t border-border">{sidebarFooterContent}</div>}
-        </aside>
+        </aside >
     </>
 
 }

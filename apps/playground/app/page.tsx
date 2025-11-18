@@ -46,14 +46,11 @@ export default function Home() {
 
             <Container size="laptop" className="py-12">
                 <ComponentPlayground />
-
             </Container>
-
 
             <Container size="laptop" className="py-12">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum repellendus numquam dolore officia aspernatur quam atque pariatur maxime nostrum error, sequi eos. Commodi, quis eius doloribus minus sint unde rerum!
             </Container>
-
 
             <div className="p-10 space-y-10">
                 <Section title="Kind / Variant">
