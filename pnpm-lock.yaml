@@ -99,11 +99,30 @@ importers:
         specifier: workspace:*
         version: link:../../tooling/typescript-config
 
+  packages/forms:
+    dependencies:
+      '@bermuda-ui/foundation':
+        specifier: workspace:*
+        version: link:../foundation
+      react:
+        specifier: ^18.0.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.3.1(react@18.3.1)
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
+    devDependencies:
+      '@bermuda-ui/typescript-config':
+        specifier: workspace:*
+        version: link:../../tooling/typescript-config
+
   packages/foundation:
     dependencies:
       '@radix-ui/react-slot':
         specifier: ^1.2.4
-        version: 1.2.4(@types/react@19.2.2)(react@19.2.0)
+        version: 1.2.4(@types/react@19.2.2)(react@18.3.1)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -112,10 +131,10 @@ importers:
         version: 2.1.1
       lucide-react:
         specifier: ^0.553.0
-        version: 0.553.0(react@19.2.0)
+        version: 0.553.0(react@18.3.1)
       react:
         specifier: ^18.0.0
-        version: 19.2.0
+        version: 18.3.1
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
@@ -3053,16 +3072,16 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.2.2)(react@19.2.0)':
+  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.2.2)(react@18.3.1)':
     dependencies:
-      react: 19.2.0
+      react: 18.3.1
     optionalDependencies:
       '@types/react': 19.2.2
 
-  '@radix-ui/react-slot@1.2.4(@types/react@19.2.2)(react@19.2.0)':
+  '@radix-ui/react-slot@1.2.4(@types/react@19.2.2)(react@18.3.1)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.2.2)(react@19.2.0)
-      react: 19.2.0
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.2.2)(react@18.3.1)
+      react: 18.3.1
     optionalDependencies:
       '@types/react': 19.2.2
 
@@ -4441,9 +4460,9 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.553.0(react@19.2.0):
+  lucide-react@0.553.0(react@18.3.1):
     dependencies:
-      react: 19.2.0
+      react: 18.3.1
 
   magic-string@0.30.21:
     dependencies:
